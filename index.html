@@ -78,6 +78,7 @@
             cursor: pointer;
             transition: all 0.2s;
             color: #ddd;
+            text-decoration: none;
         }
 
         .nav-item:hover {
@@ -97,6 +98,58 @@
             text-align: center;
         }
 
+        /* User info trong sidebar */
+        .user-section {
+            padding: 15px 20px;
+            margin: 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .user-greeting {
+            font-size: 0.85rem;
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .auth-btn {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: 0.2s;
+        }
+
+        .auth-btn:hover {
+            background: #f39c12;
+            color: #1a2a1a;
+        }
+
+        .logout-btn {
+            background: #e74c3c;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+            color: white;
+        }
+
         .nav-footer {
             position: absolute;
             bottom: 20px;
@@ -107,6 +160,8 @@
             align-items: center;
             gap: 15px;
             cursor: pointer;
+            text-decoration: none;
+            color: #ddd;
         }
 
         /* Nút toggle sidebar */
@@ -147,7 +202,7 @@
             width: calc(100% - 80px);
         }
 
-        /* Hero section mới */
+        /* Hero section */
         .hero {
             background: linear-gradient(135deg, #1e6b3b 0%, #2a9d4e 100%);
             color: white;
@@ -190,7 +245,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Container và các section */
+        /* Container */
         .container {
             max-width: 1300px;
             margin: 0 auto;
@@ -242,7 +297,6 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.03);
         }
 
         .card:hover {
@@ -258,7 +312,6 @@
         .card h3 {
             color: #1e6b3b;
             margin-bottom: 12px;
-            font-size: 1.5rem;
         }
 
         /* About grid */
@@ -300,6 +353,111 @@
             font-weight: bold;
         }
 
+        /* Modal đăng nhập/đăng ký */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 420px;
+            border-radius: 28px;
+            padding: 35px;
+            position: relative;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content h2 {
+            color: #1e6b3b;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 18px;
+            border: 1px solid #ddd;
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .modal-content input:focus {
+            outline: none;
+            border-color: #1e6b3b;
+        }
+
+        .modal-content button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #1e6b3b, #2a9d4e);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .modal-content button:hover {
+            transform: scale(1.01);
+        }
+
+        .modal-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+
+        .modal-footer a {
+            color: #1e6b3b;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .close-modal:hover {
+            color: #e74c3c;
+        }
+
         /* Help section */
         .help-section {
             background: linear-gradient(135deg, #fef9e7, #fff8e7);
@@ -307,18 +465,6 @@
             padding: 50px 40px;
             text-align: center;
             box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            border: 1px solid rgba(243,156,18,0.2);
-        }
-
-        .help-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        .help-section h3 {
-            font-size: 1.8rem;
-            color: #e67e22;
-            margin-bottom: 18px;
         }
 
         .help-btn {
@@ -331,20 +477,14 @@
             font-weight: bold;
             font-size: 1.1rem;
             transition: all 0.3s;
-            margin-top: 15px;
             border: none;
             cursor: pointer;
-        }
-
-        .help-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(30,107,59,0.3);
         }
 
         /* Gallery */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
         }
 
@@ -357,15 +497,13 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3.5rem;
+            font-size: 3rem;
             transition: all 0.4s;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
 
         .gallery-item:hover {
-            transform: scale(1.02) rotate(1deg);
-            filter: brightness(1.05);
+            transform: scale(1.02);
         }
 
         /* Contact */
@@ -401,7 +539,6 @@
             display: inline-block;
             color: #888;
             font-style: italic;
-            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -435,12 +572,30 @@
             opacity: 0;
             transition: all 0.3s;
             z-index: 99;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             border: none;
         }
 
         .back-to-top.visible {
             opacity: 1;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1e6b3b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 200;
+            transition: transform 0.3s;
+            font-weight: bold;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
         }
 
         /* Responsive */
@@ -455,7 +610,6 @@
             .toggle-btn {
                 left: 20px;
                 top: 20px;
-                z-index: 102;
             }
             .main-content {
                 margin-left: 0;
@@ -479,36 +633,47 @@
             <h3>🏫 THCS Kim Đồng</h3>
             <p>Trường học hạnh phúc</p>
         </div>
+        
+        <!-- Khu vực thông tin người dùng -->
+        <div class="user-section" id="userSection">
+            <div class="user-greeting" id="userGreeting">👋 Chào mừng!</div>
+            <div class="user-name" id="userNameDisplay">Khách</div>
+            <div class="auth-buttons" id="authButtons">
+                <button class="auth-btn" id="loginBtn">🔑 Đăng nhập</button>
+                <button class="auth-btn" id="registerBtn">📝 Đăng ký</button>
+            </div>
+        </div>
+
         <ul class="sidebar-nav">
-            <li class="nav-item active" data-page="home">
+            <a href="index.html" class="nav-item active">
                 <span class="nav-icon">🏠</span>
                 <span>Trang chủ</span>
-            </li>
-            <a href="forum.html" class="nav-item">
-    <span class="nav-icon">💬</span>
-    <span>Diễn đàn</span>
-</a>
-            <li class="nav-item" data-page="news">
+            </a>
+            <a href="tintuc.html" class="nav-item">
                 <span class="nav-icon">📰</span>
                 <span>Tin tức</span>
-            </li>
-            <li class="nav-item" data-page="scores">
+            </a>
+            <a href="forum.html" class="nav-item">
+                <span class="nav-icon">💬</span>
+                <span>Diễn đàn</span>
+            </a>
+            <a href="#scores" class="nav-item">
                 <span class="nav-icon">📊</span>
                 <span>Tra cứu điểm</span>
-            </li>
-            <li class="nav-item" data-page="gallery">
+            </a>
+            <a href="#gallery" class="nav-item">
                 <span class="nav-icon">🖼️</span>
                 <span>Thư viện</span>
-            </li>
-            <li class="nav-item" data-page="contact">
+            </a>
+            <a href="#contact" class="nav-item">
                 <span class="nav-icon">📞</span>
                 <span>Liên hệ</span>
-            </li>
+            </a>
         </ul>
-        <div class="nav-footer" id="helpBtn">
+        <a href="goiychungtoi.html" class="nav-footer">
             <span class="nav-icon">🤝</span>
-            <span>Giúp phát triển web</span>
-        </div>
+            <span>Góp ý phát triển</span>
+        </a>
     </div>
 
     <!-- Nút toggle sidebar -->
@@ -516,30 +681,12 @@
 
     <!-- Main content -->
     <div class="main-content" id="mainContent">
-        <!-- Hero section (chỉ hiện trên trang chủ) -->
         <div class="hero" id="heroSection">
             <h1>🌳 THCS KIM ĐỒNG</h1>
             <p>Nơi ươm mầm tri thức - Chắp cánh ước mơ</p>
         </div>
 
         <div class="container" id="pageContent">
-            <!-- Nội dung trang chủ sẽ được load ở đây -->
-        </div>
-
-        <footer class="footer">
-            <p>🌳 THCS KIM ĐỒNG - Nơi ươm mầm tri thức, chắp cánh ước mơ</p>
-            <p>© 2025 - Thiết kế bởi học sinh THCS Kim Đồng</p>
-            <p>🤝 <a href="#" id="footerHelpLink">Giúp chúng tôi phát triển web</a></p>
-        </footer>
-    </div>
-</div>
-
-<button class="back-to-top" id="backToTop">↑</button>
-
-<script>
-    // --- Dữ liệu các trang ---
-    const pages = {
-        home: `
             <section id="home">
                 <div class="card-container">
                     <div class="card">
@@ -580,149 +727,259 @@
             <section id="help">
                 <h2 class="section-title">🤝 Giúp chúng tôi phát triển web</h2>
                 <div class="help-section">
-                    <div class="help-icon">💻✨</div>
-                    <h3>Chung tay xây dựng website trường học hiện đại!</h3>
+                    <div class="help-icon" style="font-size:4rem;">💻✨</div>
+                    <h3 style="font-size:1.8rem; color:#e67e22; margin-bottom:18px;">Chung tay xây dựng website trường học hiện đại!</h3>
                     <p>Bạn có ý tưởng hoặc kỹ năng lập trình? Hãy tham gia cùng chúng tôi để nâng cấp trang web này thêm chuyên nghiệp và tiện ích hơn.</p>
-                    <button class="help-btn" id="helpRedirectBtn">📝 Gửi góp ý & Phát triển →</button>
+                    <a href="goiychungtoi.html" class="help-btn">📝 Gửi góp ý & Phát triển →</a>
                 </div>
             </section>
-        `,
-        news: `
-            <section>
-                <h2 class="section-title">📰 Tin tức & Sự kiện</h2>
-                <div style="background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">📬</div>
-                    <h3 style="color: #1e6b3b; margin-bottom: 15px;">Chuyên mục Tin tức</h3>
-                    <p style="margin-bottom: 25px; color: #555;">Bấm vào nút bên dưới để xem tất cả tin tức mới nhất của nhà trường.</p>
-                    <a href="tintuc.html" class="help-btn" style="background: #3498db; text-decoration: none;">📖 Đọc tin tức →</a>
-                </div>
-            </section>
-        `,
-        scores: `
-            <section>
-                <h2 class="section-title">📊 Tra cứu điểm</h2>
-                <div style="background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-                    <div style="font-size: 4rem; margin-bottom: 20px;">🔍</div>
-                    <h3 style="color: #1e6b3b; margin-bottom: 15px;">Hệ thống tra cứu điểm trực tuyến</h3>
-                    <p style="margin-bottom: 25px; color: #555;">Bạn sẽ được chuyển đến cổng thông tin điện tử của Bộ Giáo dục để tra cứu điểm thi, kết quả học tập.</p>
-                    <a href="https://vnedu.vn/index.php" target="_blank" class="help-btn" style="background: #e67e22; text-decoration: none;">🚀 Tra cứu ngay →</a>
-                </div>
-            </section>
-        `,
-        gallery: `
-            <section>
+
+            <section id="gallery">
                 <h2 class="section-title">📸 Thư viện ảnh</h2>
                 <div class="gallery-grid">
                     <div class="gallery-item">🏫 Khuôn viên</div>
                     <div class="gallery-item">📚 Thư viện</div>
                     <div class="gallery-item">⚽ Sân bóng</div>
                     <div class="gallery-item">🎉 Lễ tốt nghiệp</div>
-                    <div class="gallery-item">🎨 Hoạt động ngoại khóa</div>
-                    <div class="gallery-item">🏆 Lễ tuyên dương</div>
                 </div>
             </section>
-        `,
-        contact: `
-            <section>
+
+            <section id="contact">
                 <h2 class="section-title">📞 Liên hệ</h2>
                 <div class="contact-grid">
                     <div class="contact-info">
-                        <div class="contact-item"><div class="contact-icon">📍</div><div><h4>Địa chỉ</h4><p>Số 123, đường Nguyễn Văn Linh, phường Hòa Khánh, thành phố Đà Nẵng</p></div></div>
-                        <div class="contact-item"><div class="contact-icon">📞</div><div><h4>Điện thoại</h4><p><span class="secret">🔒 [BÍ MẬT - Liên hệ trực tiếp]</span></p></div></div>
-                        <div class="contact-item"><div class="contact-icon">✉️</div><div><h4>Email</h4><p><span class="secret">🔒 [BÍ MẬT - Liên hệ trực tiếp]</span></p></div></div>
+                        <div class="contact-item"><div class="contact-icon">📍</div><div><h4>Địa chỉ</h4><p>Số 123, đường Nguyễn Văn Linh, phường Hòa Khánh, Đà Nẵng</p></div></div>
+                        <div class="contact-item"><div class="contact-icon">📞</div><div><h4>Điện thoại</h4><p><span class="secret">🔒 [BÍ MẬT]</span></p></div></div>
+                        <div class="contact-item"><div class="contact-icon">✉️</div><div><h4>Email</h4><p><span class="secret">🔒 [BÍ MẬT]</span></p></div></div>
                         <div class="contact-item"><div class="contact-icon">🌐</div><div><h4>Website</h4><p>thcskimdong.edu.vn</p></div></div>
                     </div>
                     <div class="contact-info">
                         <h3>📝 Gửi tin nhắn cho chúng tôi</h3>
                         <form id="contactForm">
-                            <input type="text" placeholder="Họ và tên" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 12px; border: 1px solid #ddd;">
-                            <input type="email" placeholder="Email của bạn" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 12px; border: 1px solid #ddd;">
-                            <textarea rows="4" placeholder="Nội dung..." style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 12px; border: 1px solid #ddd;"></textarea>
-                            <button type="submit" style="background: #1e6b3b; color: white; padding: 12px 25px; border: none; border-radius: 40px; cursor: pointer;">Gửi tin nhắn</button>
+                            <input type="text" placeholder="Họ và tên" style="width:100%; padding:12px; margin:10px 0; border-radius:12px; border:1px solid #ddd;">
+                            <input type="email" placeholder="Email" style="width:100%; padding:12px; margin:10px 0; border-radius:12px; border:1px solid #ddd;">
+                            <textarea rows="4" placeholder="Nội dung..." style="width:100%; padding:12px; margin:10px 0; border-radius:12px; border:1px solid #ddd;"></textarea>
+                            <button type="submit" style="background:#1e6b3b; color:white; padding:12px 25px; border:none; border-radius:40px; cursor:pointer;">Gửi tin nhắn</button>
                         </form>
-                        <p style="font-size: 0.75rem; color: #888; margin-top: 15px;">※ Thông tin liên hệ sẽ được bảo mật</p>
                     </div>
                 </div>
             </section>
-        `
-    };
+        </div>
 
-    // --- Biến trạng thái ---
-    let currentPage = 'home';
-    let sidebarCollapsed = false;
-    let isMobile = window.innerWidth <= 992;
+        <footer class="footer">
+            <p>🌳 THCS KIM ĐỒNG - Nơi ươm mầm tri thức, chắp cánh ước mơ</p>
+            <p>© 2025 - Thiết kế bởi học sinh THCS Kim Đồng</p>
+            <p>🤝 <a href="goiychungtoi.html">Góp ý phát triển</a></p>
+        </footer>
+    </div>
+</div>
 
-    // --- DOM elements ---
+<!-- Modal Đăng nhập -->
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeLoginModal">&times;</span>
+        <h2>🔐 Đăng nhập</h2>
+        <input type="text" id="loginUsername" placeholder="Tên đăng nhập">
+        <input type="password" id="loginPassword" placeholder="Mật khẩu">
+        <button id="submitLoginBtn">Đăng nhập</button>
+        <div class="modal-footer">
+            Chưa có tài khoản? <a id="switchToRegister">Đăng ký ngay</a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Đăng ký -->
+<div class="modal" id="registerModal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeRegisterModal">&times;</span>
+        <h2>📝 Đăng ký</h2>
+        <input type="text" id="regFullname" placeholder="Họ và tên">
+        <input type="text" id="regUsername" placeholder="Tên đăng nhập">
+        <input type="email" id="regEmail" placeholder="Email">
+        <input type="password" id="regPassword" placeholder="Mật khẩu">
+        <input type="password" id="regConfirmPassword" placeholder="Xác nhận mật khẩu">
+        <button id="submitRegisterBtn">Đăng ký</button>
+        <div class="modal-footer">
+            Đã có tài khoản? <a id="switchToLogin">Đăng nhập ngay</a>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<button class="back-to-top" id="backToTop">↑</button>
+
+<script>
+    // === QUẢN LÝ NGƯỜI DÙNG ===
+    let currentUser = null;
+
+    // Lấy dữ liệu từ localStorage
+    function loadUsers() {
+        const users = localStorage.getItem('users');
+        return users ? JSON.parse(users) : [];
+    }
+
+    function saveUsers(users) {
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    function saveCurrentUser(user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        currentUser = user;
+    }
+
+    function loadCurrentUser() {
+        const user = localStorage.getItem('currentUser');
+        currentUser = user ? JSON.parse(user) : null;
+        updateUI();
+    }
+
+    function updateUI() {
+        const greetingEl = document.getElementById('userGreeting');
+        const nameDisplayEl = document.getElementById('userNameDisplay');
+        const authButtonsEl = document.getElementById('authButtons');
+
+        if (currentUser) {
+            greetingEl.innerHTML = '👋 Xin chào!';
+            nameDisplayEl.innerHTML = currentUser.fullname || currentUser.username;
+            authButtonsEl.innerHTML = '<button class="auth-btn logout-btn" id="logoutBtn">🚪 Đăng xuất</button>';
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', logout);
+            }
+        } else {
+            greetingEl.innerHTML = '👋 Chào mừng!';
+            nameDisplayEl.innerHTML = 'Khách';
+            authButtonsEl.innerHTML = `
+                <button class="auth-btn" id="loginBtn">🔑 Đăng nhập</button>
+                <button class="auth-btn" id="registerBtn">📝 Đăng ký</button>
+            `;
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.getElementById('registerBtn');
+            if (loginBtn) loginBtn.addEventListener('click', () => openModal('login'));
+            if (registerBtn) registerBtn.addEventListener('click', () => openModal('register'));
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        currentUser = null;
+        updateUI();
+        showToast('👋 Đã đăng xuất! Hẹn gặp lại bạn.');
+    }
+
+    function register() {
+        const fullname = document.getElementById('regFullname').value.trim();
+        const username = document.getElementById('regUsername').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+        if (!fullname || !username || !email || !password) {
+            showToast('⚠️ Vui lòng điền đầy đủ thông tin!');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            showToast('⚠️ Mật khẩu xác nhận không khớp!');
+            return;
+        }
+
+        if (password.length < 4) {
+            showToast('⚠️ Mật khẩu phải có ít nhất 4 ký tự!');
+            return;
+        }
+
+        const users = loadUsers();
+        if (users.find(u => u.username === username)) {
+            showToast('⚠️ Tên đăng nhập đã tồn tại!');
+            return;
+        }
+
+        if (users.find(u => u.email === email)) {
+            showToast('⚠️ Email đã được đăng ký!');
+            return;
+        }
+
+        const newUser = {
+            id: Date.now(),
+            fullname: fullname,
+            username: username,
+            email: email,
+            password: password,
+            createdAt: new Date().toISOString()
+        };
+
+        users.push(newUser);
+        saveUsers(users);
+        saveCurrentUser(newUser);
+        closeModal('register');
+        updateUI();
+        showToast('✅ Đăng ký thành công! Chào mừng bạn đến với trường.');
+    }
+
+    function login() {
+        const username = document.getElementById('loginUsername').value.trim();
+        const password = document.getElementById('loginPassword').value;
+
+        if (!username || !password) {
+            showToast('⚠️ Vui lòng nhập tên đăng nhập và mật khẩu!');
+            return;
+        }
+
+        const users = loadUsers();
+        const user = users.find(u => u.username === username && u.password === password);
+
+        if (user) {
+            saveCurrentUser(user);
+            closeModal('login');
+            updateUI();
+            showToast(`🎉 Chào mừng ${user.fullname || user.username} trở lại!`);
+        } else {
+            showToast('❌ Sai tên đăng nhập hoặc mật khẩu!');
+        }
+    }
+
+    // === MODAL ===
+    function openModal(type) {
+        if (type === 'login') {
+            document.getElementById('loginModal').classList.add('active');
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+        } else {
+            document.getElementById('registerModal').classList.add('active');
+            document.getElementById('regFullname').value = '';
+            document.getElementById('regUsername').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regPassword').value = '';
+            document.getElementById('regConfirmPassword').value = '';
+        }
+    }
+
+    function closeModal(type) {
+        if (type === 'login') {
+            document.getElementById('loginModal').classList.remove('active');
+        } else {
+            document.getElementById('registerModal').classList.remove('active');
+        }
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // === SIDEBAR ===
     const sidebar = document.getElementById('sidebar');
     const toggleBtn = document.getElementById('toggleBtn');
     const mainContent = document.getElementById('mainContent');
-    const pageContent = document.getElementById('pageContent');
-    const heroSection = document.getElementById('heroSection');
     const backToTop = document.getElementById('backToTop');
-    const navItems = document.querySelectorAll('.nav-item');
-    const helpBtn = document.getElementById('helpBtn');
-    const footerHelpLink = document.getElementById('footerHelpLink');
+    let isMobile = window.innerWidth <= 992;
+    let sidebarCollapsed = false;
 
-    // --- Hàm load trang ---
-    function loadPage(page) {
-        currentPage = page;
-        // Ẩn/hiện Hero chỉ khi ở trang chủ
-        if (page === 'home') {
-            heroSection.style.display = 'block';
-        } else {
-            heroSection.style.display = 'none';
-        }
-        // Load nội dung
-        pageContent.innerHTML = pages[page] || pages.home;
-        // Cập nhật active cho nav
-        navItems.forEach(item => {
-            const itemPage = item.getAttribute('data-page');
-            if (itemPage === page) {
-                item.classList.add('active');
-            } else {
-                item.classList.remove('active');
-            }
-        });
-        // Cuộn lên đầu trang
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        // Gắn lại sự kiện cho form contact nếu cần
-        if (page === 'contact') {
-            const form = document.getElementById('contactForm');
-            if (form) {
-                form.onsubmit = (e) => {
-                    e.preventDefault();
-                    alert('📩 Cảm ơn bạn đã liên hệ! Nhà trường sẽ phản hồi sớm nhất có thể.');
-                    form.reset();
-                };
-            }
-        }
-        // Gắn lại sự kiện cho nút help trong trang home
-        if (page === 'home') {
-            const helpRedirectBtn = document.getElementById('helpRedirectBtn');
-            if (helpRedirectBtn) {
-                helpRedirectBtn.onclick = () => {
-                    window.location.href = 'goiychungtoi.html';
-                };
-            }
-        }
-        // Kích hoạt lại animation cho các section
-        observeSections();
-    }
-
-    // --- Animation khi scroll ---
-    function observeSections() {
-        const sections = document.querySelectorAll('section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        sections.forEach(section => observer.observe(section));
-    }
-
-    // --- Toggle Sidebar ---
     function toggleSidebar() {
         if (isMobile) {
             sidebar.classList.toggle('mobile-open');
@@ -734,7 +991,6 @@
         }
     }
 
-    // --- Xử lý resize ---
     function handleResize() {
         isMobile = window.innerWidth <= 992;
         if (!isMobile) {
@@ -755,7 +1011,10 @@
         }
     }
 
-    // --- Back to top ---
+    toggleBtn.addEventListener('click', toggleSidebar);
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
     window.addEventListener('scroll', () => {
         backToTop.classList.toggle('visible', window.scrollY > 300);
     });
@@ -763,31 +1022,56 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // --- Event listeners ---
-    toggleBtn.addEventListener('click', toggleSidebar);
-    navItems.forEach(item => {
-        item.addEventListener('click', () => {
-            const page = item.getAttribute('data-page');
-            if (page) loadPage(page);
-            if (isMobile) sidebar.classList.remove('mobile-open');
+    // Animation sections
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
         });
-    });
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
 
-    helpBtn.addEventListener('click', () => {
-        window.location.href = 'goiychungtoi.html';
-    });
-    if (footerHelpLink) {
-        footerHelpLink.addEventListener('click', (e) => {
+    // Contact form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            window.location.href = 'goiychungtoi.html';
+            showToast('📩 Cảm ơn bạn đã liên hệ! Nhà trường sẽ phản hồi sớm.');
+            contactForm.reset();
         });
     }
 
-    window.addEventListener('resize', handleResize);
-    handleResize();
+    // Modal events
+    document.getElementById('closeLoginModal').addEventListener('click', () => closeModal('login'));
+    document.getElementById('closeRegisterModal').addEventListener('click', () => closeModal('register'));
+    document.getElementById('switchToRegister').addEventListener('click', () => {
+        closeModal('login');
+        openModal('register');
+    });
+    document.getElementById('switchToLogin').addEventListener('click', () => {
+        closeModal('register');
+        openModal('login');
+    });
+    document.getElementById('submitLoginBtn').addEventListener('click', login);
+    document.getElementById('submitRegisterBtn').addEventListener('click', register);
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === document.getElementById('loginModal')) closeModal('login');
+        if (e.target === document.getElementById('registerModal')) closeModal('register');
+    });
 
-    // Khởi tạo trang chủ
-    loadPage('home');
+    // Khởi tạo
+    loadCurrentUser();
+
+    // Enter key support
+    document.getElementById('loginPassword')?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') login();
+    });
+    document.getElementById('regConfirmPassword')?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') register();
+    });
 </script>
 </body>
 </html>
