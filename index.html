@@ -1,1 +1,747 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trường THPT [Tên Trường] - Website chính thức</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        /* Header với ảnh nền */
+        .hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "🏫";
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.08;
+            bottom: -40px;
+            right: -40px;
+            transform: rotate(-10deg);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2a5298;
+            padding: 15px 0;
+        }
+
+        .logo span {
+            color: #e74c3c;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            padding: 15px 0;
+            display: block;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #2a5298;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2a5298;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #1e3c72;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #2a5298, #e74c3c);
+            border-radius: 3px;
+        }
+
+        /* Cards */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            text-align: center;
+            padding: 30px 20px 10px;
+        }
+
+        .card h3 {
+            text-align: center;
+            padding: 0 20px;
+            color: #1e3c72;
+        }
+
+        .card p {
+            padding: 15px 20px 25px;
+            color: #666;
+            text-align: center;
+        }
+
+        /* About section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        /* News section */
+        .news-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .news-item:hover {
+            transform: translateX(5px);
+        }
+
+        .news-date {
+            background: #2a5298;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .news-date .day {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .news-date .month {
+            font-size: 0.8rem;
+        }
+
+        .news-content {
+            flex: 1;
+        }
+
+        .news-content h3 {
+            color: #1e3c72;
+            margin-bottom: 8px;
+        }
+
+        .news-content p {
+            color: #666;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            margin-top: 8px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+        }
+
+        .contact-text h4 {
+            color: #1e3c72;
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: #666;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        .contact-form button {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .contact-form button:hover {
+            transform: scale(1.02);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: #aaa;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                padding-bottom: 15px;
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2a5298;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 99;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            background: #1e3c72;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<div class="hero">
+    <h1>🏫 TRƯỜNG THPT [TÊN TRƯỜNG CỦA BẠN]</h1>
+    <p>Nơi ươm mầm tri thức - Chắp cánh ước mơ</p>
+</div>
+
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">THPT <span>❤️</span> EDU</div>
+        <ul class="nav-links">
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#news">Tin tức</a></li>
+            <li><a href="#gallery">Thư viện</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main class="container">
+    <!-- Home Section -->
+    <section id="home">
+        <div class="card-container">
+            <div class="card">
+                <div class="card-icon">🎓</div>
+                <h3>Chất lượng đào tạo</h3>
+                <p>Đội ngũ giáo viên giàu kinh nghiệm, tận tâm với nghề, yêu thương học sinh.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏆</div>
+                <h3>Thành tích nổi bật</h3>
+                <p>Nhiều năm liền đạt danh hiệu trường tiên tiến, học sinh giỏi cấp tỉnh.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌿</div>
+                <h3>Cơ sở vật chất</h3>
+                <p>Phòng học khang trang, thư viện hiện đại, sân chơi rộng rãi, thoáng mát.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">📖 Giới thiệu về trường</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p><strong>Trường THPT [Tên trường]</strong> được thành lập năm [Năm thành lập], tự hào là một trong những ngôi trường hàng đầu của tỉnh [Tên tỉnh].</p>
+                <p style="margin-top: 15px;">Với sứ mệnh "Đào tạo thế hệ trẻ phát triển toàn diện về đức - trí - thể - mỹ", nhà trường không ngừng đổi mới phương pháp giảng dạy, ứng dụng công nghệ thông tin vào giáo dục.</p>
+                <p style="margin-top: 15px;">Tầm nhìn đến năm 2030, trường sẽ trở thành trung tâm giáo dục chất lượng cao, đáp ứng nhu cầu hội nhập quốc tế.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-box">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Năm thành lập</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1200+</div>
+                    <div class="stat-label">Học sinh</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">80+</div>
+                    <div class="stat-label">Cán bộ giáo viên</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Tốt nghiệp THPT</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news">
+        <h2 class="section-title">📰 Tin tức & Sự kiện</h2>
+        <div class="news-item">
+            <div class="news-date">
+                <div class="day">15</div>
+                <div class="month">04/2024</div>
+            </div>
+            <div class="news-content">
+                <h3>Lễ khai giảng năm học mới 2024-2025</h3>
+                <p>Hòa trong không khí vui tươi của ngày tựu trường, thầy và trò trường THPT [Tên trường] đã tổ chức lễ khai giảng long trọng...</p>
+                <span class="news-tag">Sự kiện nổi bật</span>
+            </div>
+        </div>
+        <div class="news-item">
+            <div class="news-date">
+                <div class="day">10</div>
+                <div class="month">04/2024</div>
+            </div>
+            <div class="news-content">
+                <h3>Học sinh đạt giải Nhất cuộc thi Khoa học kỹ thuật cấp tỉnh</h3>
+                <p>Em Nguyễn Văn A - học sinh lớp 12A1 đã xuất sắc đạt giải Nhất với dự án "Ứng dụng AI trong phân loại rác thải"...</p>
+                <span class="news-tag">Thành tích</span>
+            </div>
+        </div>
+        <div class="news-item">
+            <div class="news-date">
+                <div class="day">05</div>
+                <div class="month">04/2024</div>
+            </div>
+            <div class="news-content">
+                <h3>Hội thao truyền thống chào mừng 26/3</h3>
+                <p>Hội thao năm nay diễn ra sôi nổi với các môn: bóng đá, bóng chuyền, cầu lông, điền kinh...</p>
+                <span class="news-tag">Hoạt động</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 class="section-title">📸 Thư viện ảnh</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://placehold.co/400x300/1e3c72/white?text=Khuôn+viên+trường" alt="Khuôn viên trường">
+                <div class="gallery-overlay">Khuôn viên xanh - sạch - đẹp</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://placehold.co/400x300/2a5298/white?text=Thư+viện" alt="Thư viện">
+                <div class="gallery-overlay">Thư viện hiện đại</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://placehold.co/400x300/e74c3c/white?text=Hoạt+động+ngoại+khóa" alt="Hoạt động ngoại khóa">
+                <div class="gallery-overlay">Hoạt động ngoại khóa sôi nổi</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://placehold.co/400x300/27ae60/white?text=Lễ+tốt+nghiệp" alt="Lễ tốt nghiệp">
+                <div class="gallery-overlay">Lễ tốt nghiệp ấm áp</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">📞 Liên hệ với chúng tôi</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-text">
+                        <h4>Địa chỉ</h4>
+                        <p>Số [số nhà], đường [tên đường], phường/xã [tên phường], thành phố [tên thành phố]</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-text">
+                        <h4>Điện thoại</h4>
+                        <p>(0251) 1234 567</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-text">
+                        <h4>Email</h4>
+                        <p>thpt@tentruong.edu.vn</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-text">
+                        <h4>Website</h4>
+                        <p>www.tentruong.edu.vn</p>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <input type="text" placeholder="Họ và tên" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Số điện thoại">
+                <textarea rows="4" placeholder="Nội dung tin nhắn" required></textarea>
+                <button type="submit">Gửi tin nhắn</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>🏫 TRƯỜNG THPT [TÊN TRƯỜNG CỦA BẠN]</p>
+    <p>© 2024 - Nơi ươm mầm tri thức, chắp cánh ước mơ</p>
+    <p>📧 Email: thpt@tentruong.edu.vn | 📞 Hotline: (0251) 1234 567</p>
+    <p>🎨 Thiết kế bởi <a href="#">Học sinh trường THPT [Tên trường]</a></p>
+</footer>
+
+<div class="back-to-top" id="backToTop">↑</div>
+
+<script>
+    // Scroll animation
+    const sections = document.querySelectorAll('section');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+    
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.');
+        contactForm.reset();
+    });
+    
+    // Smooth scroll cho navigation links
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (target) {
+                const navHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = target.offsetTop - navHeight;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
