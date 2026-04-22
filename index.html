@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trường THPT [Tên Trường] - Website chính thức</title>
+    <title>THCS Kim Đồng - Trường học hạnh phúc</title>
     <style>
         * {
             margin: 0;
@@ -18,9 +18,9 @@
             line-height: 1.6;
         }
 
-        /* Header với ảnh nền */
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #1e6b3b 0%, #2a9d4e 100%);
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -29,14 +29,13 @@
         }
 
         .hero::before {
-            content: "🏫";
+            content: "🌳";
             position: absolute;
             font-size: 200px;
             opacity: 0.08;
             bottom: -40px;
             right: -40px;
             transform: rotate(-10deg);
-            pointer-events: none;
         }
 
         .hero h1 {
@@ -52,25 +51,13 @@
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Navigation */
@@ -95,12 +82,12 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            color: #2a5298;
+            color: #1e6b3b;
             padding: 15px 0;
         }
 
         .logo span {
-            color: #e74c3c;
+            color: #f39c12;
         }
 
         .nav-links {
@@ -114,31 +101,13 @@
             color: #2c3e50;
             font-weight: 500;
             padding: 15px 0;
-            display: block;
             transition: color 0.3s;
-            position: relative;
         }
 
         .nav-links a:hover {
-            color: #2a5298;
+            color: #1e6b3b;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #2a5298;
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Main content */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -159,7 +128,7 @@
 
         .section-title {
             font-size: 2rem;
-            color: #1e3c72;
+            color: #1e6b3b;
             margin-bottom: 30px;
             position: relative;
             padding-bottom: 15px;
@@ -172,8 +141,7 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, #2a5298, #e74c3c);
-            border-radius: 3px;
+            background: linear-gradient(90deg, #1e6b3b, #f39c12);
         }
 
         /* Cards */
@@ -181,41 +149,32 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 20px;
         }
 
         .card {
             background: white;
             border-radius: 15px;
-            overflow: hidden;
+            padding: 30px 20px;
+            text-align: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
         .card-icon {
             font-size: 3rem;
-            text-align: center;
-            padding: 30px 20px 10px;
+            margin-bottom: 15px;
         }
 
         .card h3 {
-            text-align: center;
-            padding: 0 20px;
-            color: #1e3c72;
+            color: #1e6b3b;
+            margin-bottom: 10px;
         }
 
-        .card p {
-            padding: 15px 20px 25px;
-            color: #666;
-            text-align: center;
-        }
-
-        /* About section */
+        /* About */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -237,16 +196,11 @@
         }
 
         .stat-box {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: linear-gradient(135deg, #1e6b3b, #2a9d4e);
             color: white;
             padding: 25px;
             border-radius: 15px;
             text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .stat-box:hover {
-            transform: scale(1.05);
         }
 
         .stat-number {
@@ -254,113 +208,7 @@
             font-weight: bold;
         }
 
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-top: 5px;
-        }
-
-        /* News section */
-        .news-item {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .news-item:hover {
-            transform: translateX(5px);
-        }
-
-        .news-date {
-            background: #2a5298;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 10px;
-            text-align: center;
-            min-width: 80px;
-        }
-
-        .news-date .day {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .news-date .month {
-            font-size: 0.8rem;
-        }
-
-        .news-content {
-            flex: 1;
-        }
-
-        .news-content h3 {
-            color: #1e3c72;
-            margin-bottom: 8px;
-        }
-
-        .news-content p {
-            color: #666;
-        }
-
-        .news-tag {
-            display: inline-block;
-            background: #e74c3c;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 0.7rem;
-            margin-top: 8px;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            cursor: pointer;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            color: white;
-            padding: 15px;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        /* Contact section */
+        /* Contact */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -386,98 +234,110 @@
             font-size: 1.8rem;
         }
 
-        .contact-text h4 {
-            color: #1e3c72;
-            margin-bottom: 5px;
+        .secret {
+            background: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            color: #888;
+            font-style: italic;
         }
 
-        .contact-text p {
-            color: #666;
+        /* Tips Section mới */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
+        .tip-card {
+            background: linear-gradient(135deg, #fff9e6, #fff);
+            border-left: 5px solid #f39c12;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .tip-card:hover {
+            transform: translateX(5px);
+        }
+
+        .tip-card h3 {
+            color: #e67e22;
+            margin-bottom: 12px;
+        }
+
+        .tip-code {
+            background: #2c3e50;
+            color: #f1c40f;
+            padding: 8px 12px;
             border-radius: 8px;
-            font-family: inherit;
-            transition: border-color 0.3s;
+            font-family: monospace;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            display: inline-block;
         }
 
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: #2a5298;
-        }
-
-        .contact-form button {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        .btn-link {
+            display: inline-block;
+            background: #1e6b3b;
             color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: transform 0.2s;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background 0.3s;
         }
 
-        .contact-form button:hover {
+        .btn-link:hover {
+            background: #f39c12;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #1e6b3b, #2a9d4e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
             transform: scale(1.02);
         }
 
         /* Footer */
         .footer {
-            background: #1a1a2e;
+            background: #1a2a1a;
             color: #aaa;
             text-align: center;
             padding: 30px 20px;
             margin-top: 40px;
         }
 
-        .footer p {
-            margin: 10px 0;
-        }
-
         .footer a {
-            color: #ffd700;
+            color: #f39c12;
             text-decoration: none;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .nav-container {
-                flex-direction: column;
-            }
-
-            .nav-links {
-                padding-bottom: 15px;
-                gap: 20px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Back to top button */
         .back-to-top {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: #2a5298;
+            background: #1e6b3b;
             color: white;
             width: 50px;
             height: 50px;
@@ -489,15 +349,17 @@
             opacity: 0;
             transition: opacity 0.3s;
             z-index: 99;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .back-to-top.visible {
             opacity: 1;
         }
 
-        .back-to-top:hover {
-            background: #1e3c72;
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-container { flex-direction: column; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -505,18 +367,18 @@
 
 <!-- Hero Section -->
 <div class="hero">
-    <h1>🏫 TRƯỜNG THPT [TÊN TRƯỜNG CỦA BẠN]</h1>
+    <h1>🌳 THCS KIM ĐỒNG</h1>
     <p>Nơi ươm mầm tri thức - Chắp cánh ước mơ</p>
 </div>
 
 <!-- Navigation -->
 <nav class="navbar">
     <div class="nav-container">
-        <div class="logo">THPT <span>❤️</span> EDU</div>
+        <div class="logo">THCS <span>Kim Đồng</span></div>
         <ul class="nav-links">
             <li><a href="#home">Trang chủ</a></li>
             <li><a href="#about">Giới thiệu</a></li>
-            <li><a href="#news">Tin tức</a></li>
+            <li><a href="#tips">Gợi ý phát triển</a></li>
             <li><a href="#gallery">Thư viện</a></li>
             <li><a href="#contact">Liên hệ</a></li>
         </ul>
@@ -550,66 +412,69 @@
         <h2 class="section-title">📖 Giới thiệu về trường</h2>
         <div class="about-grid">
             <div class="about-text">
-                <p><strong>Trường THPT [Tên trường]</strong> được thành lập năm [Năm thành lập], tự hào là một trong những ngôi trường hàng đầu của tỉnh [Tên tỉnh].</p>
+                <p><strong>Trường THCS Kim Đồng</strong> được thành lập năm <strong>1995</strong>, tự hào là một trong những ngôi trường hàng đầu của tỉnh.</p>
                 <p style="margin-top: 15px;">Với sứ mệnh "Đào tạo thế hệ trẻ phát triển toàn diện về đức - trí - thể - mỹ", nhà trường không ngừng đổi mới phương pháp giảng dạy, ứng dụng công nghệ thông tin vào giáo dục.</p>
                 <p style="margin-top: 15px;">Tầm nhìn đến năm 2030, trường sẽ trở thành trung tâm giáo dục chất lượng cao, đáp ứng nhu cầu hội nhập quốc tế.</p>
             </div>
             <div class="about-stats">
                 <div class="stat-box">
-                    <div class="stat-number">25+</div>
+                    <div class="stat-number">29+</div>
                     <div class="stat-label">Năm thành lập</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">1200+</div>
+                    <div class="stat-number">850+</div>
                     <div class="stat-label">Học sinh</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">80+</div>
+                    <div class="stat-number">55+</div>
                     <div class="stat-label">Cán bộ giáo viên</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Tốt nghiệp THPT</div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Tốt nghiệp THCS</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- News Section -->
-    <section id="news">
-        <h2 class="section-title">📰 Tin tức & Sự kiện</h2>
-        <div class="news-item">
-            <div class="news-date">
-                <div class="day">15</div>
-                <div class="month">04/2024</div>
+    <!-- Tips Section (Mới) -->
+    <section id="tips">
+        <h2 class="section-title">💡 Gợi ý phát triển web</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <h3>📸 Thay ảnh thật</h3>
+                <p>Upload ảnh trường lên GitHub, sửa đường dẫn trong thẻ &lt;img&gt;</p>
+                <code class="tip-code">&lt;img src="anh-truong.jpg"&gt;</code>
             </div>
-            <div class="news-content">
-                <h3>Lễ khai giảng năm học mới 2024-2025</h3>
-                <p>Hòa trong không khí vui tươi của ngày tựu trường, thầy và trò trường THPT [Tên trường] đã tổ chức lễ khai giảng long trọng...</p>
-                <span class="news-tag">Sự kiện nổi bật</span>
+            <div class="tip-card">
+                <h3>🎥 Thêm video giới thiệu</h3>
+                <p>Chèn iframe YouTube vào trang</p>
+                <code class="tip-code">&lt;iframe src="link-youtube"&gt;&lt;/iframe&gt;</code>
+            </div>
+            <div class="tip-card">
+                <h3>📧 Đăng ký nhận tin</h3>
+                <p>Thêm form đăng ký email để gửi thông báo</p>
+                <code class="tip-code">&lt;input type="email" placeholder="Email"&gt;</code>
+            </div>
+            <div class="tip-card">
+                <h3>🏆 Bảng thành tích</h3>
+                <p>Thêm bảng HTML hiển thị giải thưởng của trường</p>
+                <code class="tip-code">&lt;table&gt;...&lt;/table&gt;</code>
+            </div>
+            <div class="tip-card">
+                <h3>🗺️ Bản đồ Google Maps</h3>
+                <p>Chèn iframe Google Maps vào phần liên hệ</p>
+                <code class="tip-code">&lt;iframe src="maps-link"&gt;&lt;/iframe&gt;</code>
+            </div>
+            <div class="tip-card">
+                <h3>🎨 Đổi màu sắc</h3>
+                <p>Tùy chỉnh màu nền, màu chữ trong thẻ style</p>
+                <code class="tip-code">background: #mã_màu;</code>
             </div>
         </div>
-        <div class="news-item">
-            <div class="news-date">
-                <div class="day">10</div>
-                <div class="month">04/2024</div>
-            </div>
-            <div class="news-content">
-                <h3>Học sinh đạt giải Nhất cuộc thi Khoa học kỹ thuật cấp tỉnh</h3>
-                <p>Em Nguyễn Văn A - học sinh lớp 12A1 đã xuất sắc đạt giải Nhất với dự án "Ứng dụng AI trong phân loại rác thải"...</p>
-                <span class="news-tag">Thành tích</span>
-            </div>
-        </div>
-        <div class="news-item">
-            <div class="news-date">
-                <div class="day">05</div>
-                <div class="month">04/2024</div>
-            </div>
-            <div class="news-content">
-                <h3>Hội thao truyền thống chào mừng 26/3</h3>
-                <p>Hội thao năm nay diễn ra sôi nổi với các môn: bóng đá, bóng chuyền, cầu lông, điền kinh...</p>
-                <span class="news-tag">Hoạt động</span>
-            </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="https://www.w3schools.com/html/" target="_blank" class="btn-link">📚 Học thêm HTML tại W3Schools →</a>
+            <a href="https://github.com/MinhTuan-hub2k12" target="_blank" class="btn-link" style="margin-left: 15px; background: #333;">🐙 GitHub của tôi →</a>
         </div>
     </section>
 
@@ -617,75 +482,65 @@
     <section id="gallery">
         <h2 class="section-title">📸 Thư viện ảnh</h2>
         <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://placehold.co/400x300/1e3c72/white?text=Khuôn+viên+trường" alt="Khuôn viên trường">
-                <div class="gallery-overlay">Khuôn viên xanh - sạch - đẹp</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://placehold.co/400x300/2a5298/white?text=Thư+viện" alt="Thư viện">
-                <div class="gallery-overlay">Thư viện hiện đại</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://placehold.co/400x300/e74c3c/white?text=Hoạt+động+ngoại+khóa" alt="Hoạt động ngoại khóa">
-                <div class="gallery-overlay">Hoạt động ngoại khóa sôi nổi</div>
-            </div>
-            <div class="gallery-item">
-                <img src="https://placehold.co/400x300/27ae60/white?text=Lễ+tốt+nghiệp" alt="Lễ tốt nghiệp">
-                <div class="gallery-overlay">Lễ tốt nghiệp ấm áp</div>
-            </div>
+            <div class="gallery-item">🏫 Khuôn viên</div>
+            <div class="gallery-item">📚 Thư viện</div>
+            <div class="gallery-item">⚽ Sân bóng</div>
+            <div class="gallery-item">🎉 Lễ tốt nghiệp</div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section (Email & SĐT để Bí mật) -->
     <section id="contact">
-        <h2 class="section-title">📞 Liên hệ với chúng tôi</h2>
+        <h2 class="section-title">📞 Liên hệ</h2>
         <div class="contact-grid">
             <div class="contact-info">
                 <div class="contact-item">
                     <div class="contact-icon">📍</div>
                     <div class="contact-text">
                         <h4>Địa chỉ</h4>
-                        <p>Số [số nhà], đường [tên đường], phường/xã [tên phường], thành phố [tên thành phố]</p>
+                        <p>Số 123, đường Nguyễn Văn Linh, phường Hòa Khánh, thành phố Đà Nẵng</p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">📞</div>
                     <div class="contact-text">
                         <h4>Điện thoại</h4>
-                        <p>(0251) 1234 567</p>
+                        <p><span class="secret">🔒 [BÍ MẬT - Liên hệ trực tiếp]</span></p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">✉️</div>
                     <div class="contact-text">
                         <h4>Email</h4>
-                        <p>thpt@tentruong.edu.vn</p>
+                        <p><span class="secret">🔒 [BÍ MẬT - Liên hệ trực tiếp]</span></p>
                     </div>
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">🌐</div>
                     <div class="contact-text">
                         <h4>Website</h4>
-                        <p>www.tentruong.edu.vn</p>
+                        <p>thcskimdong.edu.vn</p>
                     </div>
                 </div>
             </div>
-            <form class="contact-form" id="contactForm">
-                <input type="text" placeholder="Họ và tên" required>
-                <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Số điện thoại">
-                <textarea rows="4" placeholder="Nội dung tin nhắn" required></textarea>
-                <button type="submit">Gửi tin nhắn</button>
-            </form>
+            <div class="contact-info">
+                <h3>📝 Gửi tin nhắn cho chúng tôi</h3>
+                <form id="contactForm">
+                    <input type="text" placeholder="Họ và tên" style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #ddd;">
+                    <input type="email" placeholder="Email của bạn" style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #ddd;">
+                    <textarea rows="4" placeholder="Nội dung..." style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #ddd;"></textarea>
+                    <button type="submit" style="background: #1e6b3b; color: white; padding: 12px 25px; border: none; border-radius: 30px; cursor: pointer;">Gửi tin nhắn</button>
+                </form>
+                <p style="font-size: 0.8rem; color: #888; margin-top: 15px;">※ Thông tin liên hệ sẽ được bảo mật</p>
+            </div>
         </div>
     </section>
 </main>
 
 <footer class="footer">
-    <p>🏫 TRƯỜNG THPT [TÊN TRƯỜNG CỦA BẠN]</p>
-    <p>© 2024 - Nơi ươm mầm tri thức, chắp cánh ước mơ</p>
-    <p>📧 Email: thpt@tentruong.edu.vn | 📞 Hotline: (0251) 1234 567</p>
-    <p>🎨 Thiết kế bởi <a href="#">Học sinh trường THPT [Tên trường]</a></p>
+    <p>🌳 THCS KIM ĐỒNG - Nơi ươm mầm tri thức, chắp cánh ước mơ</p>
+    <p>© 2024 - Thiết kế bởi học sinh THCS Kim Đồng</p>
+    <p>💡 Gợi ý: <a href="#tips">Xem các cách nâng cấp web tại đây</a></p>
 </footer>
 
 <div class="back-to-top" id="backToTop">↑</div>
@@ -693,7 +548,6 @@
 <script>
     // Scroll animation
     const sections = document.querySelectorAll('section');
-    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -702,45 +556,20 @@
         });
     }, { threshold: 0.1 });
     
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    sections.forEach(section => observer.observe(section));
     
-    // Back to top button
+    // Back to top
     const backToTop = document.getElementById('backToTop');
-    
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
+        backToTop.classList.toggle('visible', window.scrollY > 300);
     });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    // Form submission
-    const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', (e) => {
+    // Form submit
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể.');
-        contactForm.reset();
-    });
-    
-    // Smooth scroll cho navigation links
-    document.querySelectorAll('.nav-links a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const target = document.querySelector(targetId);
-            if (target) {
-                const navHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = target.offsetTop - navHeight;
-                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-            }
-        });
+        alert('📩 Cảm ơn bạn đã liên hệ! Nhà trường sẽ phản hồi sớm nhất có thể.');
+        e.target.reset();
     });
 </script>
 </body>
