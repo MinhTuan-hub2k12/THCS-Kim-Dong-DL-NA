@@ -15,13 +15,143 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f5f7fa;
             color: #2c3e50;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* Layout chính với Sidebar */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #1a2a1a 0%, #0e1a0e 100%);
+            color: #ecf0f1;
+            transition: width 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 100;
+            overflow-y: auto;
+            box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar.collapsed .sidebar-header h3,
+        .sidebar.collapsed .sidebar-header p,
+        .sidebar.collapsed .nav-item span,
+        .sidebar.collapsed .nav-footer span {
+            display: none;
+        }
+
+        .sidebar-header h3 {
+            color: #f39c12;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 20px;
+            margin: 5px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #ddd;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: #f39c12;
+            color: #1a2a1a;
+            font-weight: bold;
+        }
+
+        .nav-icon {
+            font-size: 1.4rem;
+            min-width: 32px;
+            text-align: center;
+        }
+
+        .nav-footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        /* Nút toggle sidebar */
+        .toggle-btn {
+            position: fixed;
+            left: 270px;
+            top: 20px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 101;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: left 0.3s ease;
+            color: #1e6b3b;
+            font-size: 1.2rem;
+        }
+
+        .toggle-btn.collapsed {
+            left: 90px;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            transition: margin-left 0.3s ease;
+            width: calc(100% - 260px);
+        }
+
+        .main-content.expanded {
+            margin-left: 80px;
+            width: calc(100% - 80px);
+        }
+
+        /* Hero section mới */
         .hero {
             background: linear-gradient(135deg, #1e6b3b 0%, #2a9d4e 100%);
             color: white;
-            padding: 60px 20px;
+            padding: 80px 40px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -30,93 +160,48 @@
         .hero::before {
             content: "🌳";
             position: absolute;
-            font-size: 200px;
+            font-size: 280px;
             opacity: 0.08;
-            bottom: -40px;
-            right: -40px;
-            transform: rotate(-10deg);
+            bottom: -60px;
+            right: -60px;
+            transform: rotate(-15deg);
+            pointer-events: none;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
             animation: fadeInDown 0.8s ease;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            opacity: 0.95;
             animation: fadeInUp 0.8s ease;
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
+            from { opacity: 0; transform: translateY(-40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .navbar {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            flex-wrap: wrap;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1e6b3b;
-            padding: 15px 0;
-        }
-
-        .logo span {
-            color: #f39c12;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            padding: 15px 0;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #1e6b3b;
-        }
-
+        /* Container và các section */
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 40px 30px;
         }
 
         section {
-            margin-bottom: 60px;
+            margin-bottom: 70px;
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.6s ease;
+            transition: all 0.7s ease;
         }
 
         section.visible {
@@ -127,7 +212,7 @@
         .section-title {
             font-size: 2rem;
             color: #1e6b3b;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             position: relative;
             padding-bottom: 15px;
         }
@@ -137,11 +222,13 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 60px;
-            height: 3px;
+            width: 70px;
+            height: 4px;
             background: linear-gradient(90deg, #1e6b3b, #f39c12);
+            border-radius: 2px;
         }
 
+        /* Cards */
         .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -150,27 +237,31 @@
 
         .card {
             background: white;
-            border-radius: 15px;
-            padding: 30px 20px;
+            border-radius: 20px;
+            padding: 35px 25px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.03);
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
         }
 
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
         }
 
         .card h3 {
             color: #1e6b3b;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 1.5rem;
         }
 
+        /* About grid */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -180,23 +271,28 @@
 
         .about-text {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
 
         .about-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 25px;
         }
 
         .stat-box {
             background: linear-gradient(135deg, #1e6b3b, #2a9d4e);
             color: white;
-            padding: 25px;
-            border-radius: 15px;
+            padding: 30px 20px;
+            border-radius: 20px;
             text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.03);
         }
 
         .stat-number {
@@ -204,14 +300,14 @@
             font-weight: bold;
         }
 
-        /* Phần Giúp phát triển web mới */
+        /* Help section */
         .help-section {
-            background: linear-gradient(135deg, #fef9e7, #fff);
-            border-radius: 20px;
-            padding: 40px;
+            background: linear-gradient(135deg, #fef9e7, #fff8e7);
+            border-radius: 28px;
+            padding: 50px 40px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 1px solid rgba(243,156,18,0.3);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            border: 1px solid rgba(243,156,18,0.2);
         }
 
         .help-icon {
@@ -222,35 +318,57 @@
         .help-section h3 {
             font-size: 1.8rem;
             color: #e67e22;
-            margin-bottom: 15px;
-        }
-
-        .help-section p {
-            color: #555;
-            margin-bottom: 25px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 18px;
         }
 
         .help-btn {
             display: inline-block;
             background: linear-gradient(135deg, #1e6b3b, #2a9d4e);
             color: white;
-            padding: 14px 35px;
+            padding: 14px 38px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(30,107,59,0.3);
+            transition: all 0.3s;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
         }
 
         .help-btn:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(30,107,59,0.4);
+            box-shadow: 0 8px 20px rgba(30,107,59,0.3);
         }
 
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #1e6b3b, #2a9d4e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3.5rem;
+            transition: all 0.4s;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02) rotate(1deg);
+            filter: brightness(1.05);
+        }
+
+        /* Contact */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -259,62 +377,40 @@
 
         .contact-info {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 15px 0;
+            gap: 18px;
+            padding: 18px 0;
             border-bottom: 1px solid #eee;
         }
 
         .contact-icon {
-            font-size: 1.8rem;
+            font-size: 2rem;
         }
 
         .secret {
             background: #f0f0f0;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 6px 15px;
+            border-radius: 30px;
             display: inline-block;
             color: #888;
             font-style: italic;
+            font-size: 0.9rem;
         }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            background: linear-gradient(135deg, #1e6b3b, #2a9d4e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.02);
-        }
-
+        /* Footer */
         .footer {
             background: #1a2a1a;
             color: #aaa;
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 40px;
+            padding: 35px 20px;
+            margin-top: 50px;
         }
 
         .footer a {
@@ -322,6 +418,7 @@
             text-decoration: none;
         }
 
+        /* Back to top */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -336,202 +433,357 @@
             justify-content: center;
             cursor: pointer;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: all 0.3s;
             z-index: 99;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: none;
         }
 
         .back-to-top.visible {
             opacity: 1;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .nav-container { flex-direction: column; }
-            .about-grid, .contact-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 1.5rem; }
-            .help-section { padding: 25px; }
-            .help-section h3 { font-size: 1.4rem; }
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+            .toggle-btn {
+                left: 20px;
+                top: 20px;
+                z-index: 102;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- Hero Section -->
-<div class="hero">
-    <h1>🌳 THCS KIM ĐỒNG</h1>
-    <p>Nơi ươm mầm tri thức - Chắp cánh ước mơ</p>
+<div class="app-container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>🏫 THCS Kim Đồng</h3>
+            <p>Trường học hạnh phúc</p>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-item active" data-page="home">
+                <span class="nav-icon">🏠</span>
+                <span>Trang chủ</span>
+            </li>
+            <li class="nav-item" data-page="news">
+                <span class="nav-icon">📰</span>
+                <span>Tin tức</span>
+            </li>
+            <li class="nav-item" data-page="scores">
+                <span class="nav-icon">📊</span>
+                <span>Tra cứu điểm</span>
+            </li>
+            <li class="nav-item" data-page="gallery">
+                <span class="nav-icon">🖼️</span>
+                <span>Thư viện</span>
+            </li>
+            <li class="nav-item" data-page="contact">
+                <span class="nav-icon">📞</span>
+                <span>Liên hệ</span>
+            </li>
+        </ul>
+        <div class="nav-footer" id="helpBtn">
+            <span class="nav-icon">🤝</span>
+            <span>Giúp phát triển web</span>
+        </div>
+    </div>
+
+    <!-- Nút toggle sidebar -->
+    <button class="toggle-btn" id="toggleBtn">☰</button>
+
+    <!-- Main content -->
+    <div class="main-content" id="mainContent">
+        <!-- Hero section (chỉ hiện trên trang chủ) -->
+        <div class="hero" id="heroSection">
+            <h1>🌳 THCS KIM ĐỒNG</h1>
+            <p>Nơi ươm mầm tri thức - Chắp cánh ước mơ</p>
+        </div>
+
+        <div class="container" id="pageContent">
+            <!-- Nội dung trang chủ sẽ được load ở đây -->
+        </div>
+
+        <footer class="footer">
+            <p>🌳 THCS KIM ĐỒNG - Nơi ươm mầm tri thức, chắp cánh ước mơ</p>
+            <p>© 2025 - Thiết kế bởi học sinh THCS Kim Đồng</p>
+            <p>🤝 <a href="#" id="footerHelpLink">Giúp chúng tôi phát triển web</a></p>
+        </footer>
+    </div>
 </div>
 
-<!-- Navigation -->
-<nav class="navbar">
-    <div class="nav-container">
-        <div class="logo">THCS <span>Kim Đồng</span></div>
-        <ul class="nav-links">
-            <li><a href="#home">Trang chủ</a></li>
-            <li><a href="#about">Giới thiệu</a></li>
-            <li><a href="#help">Giúp phát triển</a></li>
-            <li><a href="#gallery">Thư viện</a></li>
-            <li><a href="#contact">Liên hệ</a></li>
-        </ul>
-    </div>
-</nav>
-
-<main class="container">
-    <!-- Home Section -->
-    <section id="home">
-        <div class="card-container">
-            <div class="card">
-                <div class="card-icon">🎓</div>
-                <h3>Chất lượng đào tạo</h3>
-                <p>Đội ngũ giáo viên giàu kinh nghiệm, tận tâm với nghề, yêu thương học sinh.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🏆</div>
-                <h3>Thành tích nổi bật</h3>
-                <p>Nhiều năm liền đạt danh hiệu trường tiên tiến, học sinh giỏi cấp tỉnh.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">🌿</div>
-                <h3>Cơ sở vật chất</h3>
-                <p>Phòng học khang trang, thư viện hiện đại, sân chơi rộng rãi, thoáng mát.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title">📖 Giới thiệu về trường</h2>
-        <div class="about-grid">
-            <div class="about-text">
-                <p><strong>Trường THCS Kim Đồng</strong> được thành lập năm <strong>1995</strong>, tự hào là một trong những ngôi trường hàng đầu của tỉnh.</p>
-                <p style="margin-top: 15px;">Với sứ mệnh "Đào tạo thế hệ trẻ phát triển toàn diện về đức - trí - thể - mỹ", nhà trường không ngừng đổi mới phương pháp giảng dạy, ứng dụng công nghệ thông tin vào giáo dục.</p>
-                <p style="margin-top: 15px;">Tầm nhìn đến năm 2030, trường sẽ trở thành trung tâm giáo dục chất lượng cao, đáp ứng nhu cầu hội nhập quốc tế.</p>
-            </div>
-            <div class="about-stats">
-                <div class="stat-box">
-                    <div class="stat-number">29+</div>
-                    <div class="stat-label">Năm thành lập</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">850+</div>
-                    <div class="stat-label">Học sinh</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">55+</div>
-                    <div class="stat-label">Cán bộ giáo viên</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Tốt nghiệp THCS</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Help Section Mới - Thay thế cho Gợi ý phát triển -->
-    <section id="help">
-        <h2 class="section-title">🤝 Giúp chúng tôi phát triển web</h2>
-        <div class="help-section">
-            <div class="help-icon">💻✨</div>
-            <h3>Chung tay xây dựng website trường học hiện đại!</h3>
-            <p>Bạn có ý tưởng hoặc kỹ năng lập trình? Hãy tham gia cùng chúng tôi để nâng cấp trang web này thêm chuyên nghiệp và tiện ích hơn.</p>
-            <a href="goiychungtoi.html" class="help-btn">📝 Gửi góp ý & Phát triển →</a>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery">
-        <h2 class="section-title">📸 Thư viện ảnh</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item">🏫 Khuôn viên</div>
-            <div class="gallery-item">📚 Thư viện</div>
-            <div class="gallery-item">⚽ Sân bóng</div>
-            <div class="gallery-item">🎉 Lễ tốt nghiệp</div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">📞 Liên hệ</h2>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <div class="contact-text">
-                        <h4>Địa chỉ</h4>
-                        <p>Số 123, đường Nguyễn Văn Linh, phường Hòa Khánh, thành phố Đà Nẵng</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📞</div>
-                    <div class="contact-text">
-                        <h4>Điện thoại</h4>
-                        <p><span class="secret">🔒 [BÍ MẬT - Liên hệ trực tiếp]</span></p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">✉️</div>
-                    <div class="contact-text">
-                        <h4>Email</h4>
-                        <p><span class="secret">🔒 [BÍ MẬT - Liên hệ trực tiếp]</span></p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">🌐</div>
-                    <div class="contact-text">
-                        <h4>Website</h4>
-                        <p>thcskimdong.edu.vn</p>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-info">
-                <h3>📝 Gửi tin nhắn cho chúng tôi</h3>
-                <form id="contactForm">
-                    <input type="text" placeholder="Họ và tên" style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #ddd;">
-                    <input type="email" placeholder="Email của bạn" style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #ddd;">
-                    <textarea rows="4" placeholder="Nội dung..." style="width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #ddd;"></textarea>
-                    <button type="submit" style="background: #1e6b3b; color: white; padding: 12px 25px; border: none; border-radius: 30px; cursor: pointer;">Gửi tin nhắn</button>
-                </form>
-                <p style="font-size: 0.8rem; color: #888; margin-top: 15px;">※ Thông tin liên hệ sẽ được bảo mật</p>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer class="footer">
-    <p>🌳 THCS KIM ĐỒNG - Nơi ươm mầm tri thức, chắp cánh ước mơ</p>
-    <p>© 2024 - Thiết kế bởi học sinh THCS Kim Đồng</p>
-    <p>🤝 <a href="goiychungtoi.html">Giúp chúng tôi phát triển web</a> | 📧 Góp ý: <a href="goiychungtoi.html">Tại đây</a></p>
-</footer>
-
-<div class="back-to-top" id="backToTop">↑</div>
+<button class="back-to-top" id="backToTop">↑</button>
 
 <script>
-    // Scroll animation
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+    // --- Dữ liệu các trang ---
+    const pages = {
+        home: `
+            <section id="home">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-icon">🎓</div>
+                        <h3>Chất lượng đào tạo</h3>
+                        <p>Đội ngũ giáo viên giàu kinh nghiệm, tận tâm với nghề, yêu thương học sinh.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🏆</div>
+                        <h3>Thành tích nổi bật</h3>
+                        <p>Nhiều năm liền đạt danh hiệu trường tiên tiến, học sinh giỏi cấp tỉnh.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🌿</div>
+                        <h3>Cơ sở vật chất</h3>
+                        <p>Phòng học khang trang, thư viện hiện đại, sân chơi rộng rãi, thoáng mát.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about">
+                <h2 class="section-title">📖 Giới thiệu về trường</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p><strong>Trường THCS Kim Đồng</strong> được thành lập năm <strong>1995</strong>, tự hào là một trong những ngôi trường hàng đầu của tỉnh.</p>
+                        <p style="margin-top: 20px;">Với sứ mệnh "Đào tạo thế hệ trẻ phát triển toàn diện về đức - trí - thể - mỹ", nhà trường không ngừng đổi mới phương pháp giảng dạy, ứng dụng công nghệ thông tin vào giáo dục.</p>
+                        <p style="margin-top: 20px;">Tầm nhìn đến năm 2030, trường sẽ trở thành trung tâm giáo dục chất lượng cao, đáp ứng nhu cầu hội nhập quốc tế.</p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-box"><div class="stat-number">29+</div><div>Năm thành lập</div></div>
+                        <div class="stat-box"><div class="stat-number">850+</div><div>Học sinh</div></div>
+                        <div class="stat-box"><div class="stat-number">55+</div><div>Cán bộ giáo viên</div></div>
+                        <div class="stat-box"><div class="stat-number">100%</div><div>Tốt nghiệp THCS</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="help">
+                <h2 class="section-title">🤝 Giúp chúng tôi phát triển web</h2>
+                <div class="help-section">
+                    <div class="help-icon">💻✨</div>
+                    <h3>Chung tay xây dựng website trường học hiện đại!</h3>
+                    <p>Bạn có ý tưởng hoặc kỹ năng lập trình? Hãy tham gia cùng chúng tôi để nâng cấp trang web này thêm chuyên nghiệp và tiện ích hơn.</p>
+                    <button class="help-btn" id="helpRedirectBtn">📝 Gửi góp ý & Phát triển →</button>
+                </div>
+            </section>
+        `,
+        news: `
+            <section>
+                <h2 class="section-title">📰 Tin tức & Sự kiện</h2>
+                <div style="background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">📬</div>
+                    <h3 style="color: #1e6b3b; margin-bottom: 15px;">Chuyên mục Tin tức</h3>
+                    <p style="margin-bottom: 25px; color: #555;">Bấm vào nút bên dưới để xem tất cả tin tức mới nhất của nhà trường.</p>
+                    <a href="tintuc.html" class="help-btn" style="background: #3498db; text-decoration: none;">📖 Đọc tin tức →</a>
+                </div>
+            </section>
+        `,
+        scores: `
+            <section>
+                <h2 class="section-title">📊 Tra cứu điểm</h2>
+                <div style="background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🔍</div>
+                    <h3 style="color: #1e6b3b; margin-bottom: 15px;">Hệ thống tra cứu điểm trực tuyến</h3>
+                    <p style="margin-bottom: 25px; color: #555;">Bạn sẽ được chuyển đến cổng thông tin điện tử của Bộ Giáo dục để tra cứu điểm thi, kết quả học tập.</p>
+                    <a href="https://vnedu.vn/index.php" target="_blank" class="help-btn" style="background: #e67e22; text-decoration: none;">🚀 Tra cứu ngay →</a>
+                </div>
+            </section>
+        `,
+        gallery: `
+            <section>
+                <h2 class="section-title">📸 Thư viện ảnh</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">🏫 Khuôn viên</div>
+                    <div class="gallery-item">📚 Thư viện</div>
+                    <div class="gallery-item">⚽ Sân bóng</div>
+                    <div class="gallery-item">🎉 Lễ tốt nghiệp</div>
+                    <div class="gallery-item">🎨 Hoạt động ngoại khóa</div>
+                    <div class="gallery-item">🏆 Lễ tuyên dương</div>
+                </div>
+            </section>
+        `,
+        contact: `
+            <section>
+                <h2 class="section-title">📞 Liên hệ</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item"><div class="contact-icon">📍</div><div><h4>Địa chỉ</h4><p>Số 123, đường Nguyễn Văn Linh, phường Hòa Khánh, thành phố Đà Nẵng</p></div></div>
+                        <div class="contact-item"><div class="contact-icon">📞</div><div><h4>Điện thoại</h4><p><span class="secret">🔒 [BÍ MẬT - Liên hệ trực tiếp]</span></p></div></div>
+                        <div class="contact-item"><div class="contact-icon">✉️</div><div><h4>Email</h4><p><span class="secret">🔒 [BÍ MẬT - Liên hệ trực tiếp]</span></p></div></div>
+                        <div class="contact-item"><div class="contact-icon">🌐</div><div><h4>Website</h4><p>thcskimdong.edu.vn</p></div></div>
+                    </div>
+                    <div class="contact-info">
+                        <h3>📝 Gửi tin nhắn cho chúng tôi</h3>
+                        <form id="contactForm">
+                            <input type="text" placeholder="Họ và tên" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 12px; border: 1px solid #ddd;">
+                            <input type="email" placeholder="Email của bạn" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 12px; border: 1px solid #ddd;">
+                            <textarea rows="4" placeholder="Nội dung..." style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 12px; border: 1px solid #ddd;"></textarea>
+                            <button type="submit" style="background: #1e6b3b; color: white; padding: 12px 25px; border: none; border-radius: 40px; cursor: pointer;">Gửi tin nhắn</button>
+                        </form>
+                        <p style="font-size: 0.75rem; color: #888; margin-top: 15px;">※ Thông tin liên hệ sẽ được bảo mật</p>
+                    </div>
+                </div>
+            </section>
+        `
+    };
+
+    // --- Biến trạng thái ---
+    let currentPage = 'home';
+    let sidebarCollapsed = false;
+    let isMobile = window.innerWidth <= 992;
+
+    // --- DOM elements ---
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const mainContent = document.getElementById('mainContent');
+    const pageContent = document.getElementById('pageContent');
+    const heroSection = document.getElementById('heroSection');
+    const backToTop = document.getElementById('backToTop');
+    const navItems = document.querySelectorAll('.nav-item');
+    const helpBtn = document.getElementById('helpBtn');
+    const footerHelpLink = document.getElementById('footerHelpLink');
+
+    // --- Hàm load trang ---
+    function loadPage(page) {
+        currentPage = page;
+        // Ẩn/hiện Hero chỉ khi ở trang chủ
+        if (page === 'home') {
+            heroSection.style.display = 'block';
+        } else {
+            heroSection.style.display = 'none';
+        }
+        // Load nội dung
+        pageContent.innerHTML = pages[page] || pages.home;
+        // Cập nhật active cho nav
+        navItems.forEach(item => {
+            const itemPage = item.getAttribute('data-page');
+            if (itemPage === page) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
             }
         });
-    }, { threshold: 0.1 });
-    
-    sections.forEach(section => observer.observe(section));
-    
-    // Back to top
-    const backToTop = document.getElementById('backToTop');
+        // Cuộn lên đầu trang
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Gắn lại sự kiện cho form contact nếu cần
+        if (page === 'contact') {
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.onsubmit = (e) => {
+                    e.preventDefault();
+                    alert('📩 Cảm ơn bạn đã liên hệ! Nhà trường sẽ phản hồi sớm nhất có thể.');
+                    form.reset();
+                };
+            }
+        }
+        // Gắn lại sự kiện cho nút help trong trang home
+        if (page === 'home') {
+            const helpRedirectBtn = document.getElementById('helpRedirectBtn');
+            if (helpRedirectBtn) {
+                helpRedirectBtn.onclick = () => {
+                    window.location.href = 'goiychungtoi.html';
+                };
+            }
+        }
+        // Kích hoạt lại animation cho các section
+        observeSections();
+    }
+
+    // --- Animation khi scroll ---
+    function observeSections() {
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+    }
+
+    // --- Toggle Sidebar ---
+    function toggleSidebar() {
+        if (isMobile) {
+            sidebar.classList.toggle('mobile-open');
+        } else {
+            sidebarCollapsed = !sidebarCollapsed;
+            sidebar.classList.toggle('collapsed', sidebarCollapsed);
+            mainContent.classList.toggle('expanded', sidebarCollapsed);
+            toggleBtn.classList.toggle('collapsed', sidebarCollapsed);
+        }
+    }
+
+    // --- Xử lý resize ---
+    function handleResize() {
+        isMobile = window.innerWidth <= 992;
+        if (!isMobile) {
+            sidebar.classList.remove('mobile-open');
+            if (sidebarCollapsed) {
+                sidebar.classList.add('collapsed');
+                mainContent.classList.add('expanded');
+                toggleBtn.classList.add('collapsed');
+            } else {
+                sidebar.classList.remove('collapsed');
+                mainContent.classList.remove('expanded');
+                toggleBtn.classList.remove('collapsed');
+            }
+        } else {
+            sidebar.classList.remove('collapsed');
+            mainContent.classList.remove('expanded');
+            toggleBtn.classList.remove('collapsed');
+        }
+    }
+
+    // --- Back to top ---
     window.addEventListener('scroll', () => {
         backToTop.classList.toggle('visible', window.scrollY > 300);
     });
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    
-    // Form submit
-    document.getElementById('contactForm')?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('📩 Cảm ơn bạn đã liên hệ! Nhà trường sẽ phản hồi sớm nhất có thể.');
-        e.target.reset();
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // --- Event listeners ---
+    toggleBtn.addEventListener('click', toggleSidebar);
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const page = item.getAttribute('data-page');
+            if (page) loadPage(page);
+            if (isMobile) sidebar.classList.remove('mobile-open');
+        });
+    });
+
+    helpBtn.addEventListener('click', () => {
+        window.location.href = 'goiychungtoi.html';
+    });
+    if (footerHelpLink) {
+        footerHelpLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'goiychungtoi.html';
+        });
+    }
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    // Khởi tạo trang chủ
+    loadPage('home');
 </script>
 </body>
 </html>
